@@ -1,2 +1,3 @@
-# package_bag
-A bundle of useful java-packages
+# Package Bag
+Some java packages that are pretty useful (sometimes).
+
