@@ -10,20 +10,24 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.*;
 
+/*
+ * TODO Implement read n numbers of lines/bytes
+ */
 /**
  * A Client is a Program that connects to a Server on a specific port
  * It can be used to send data to the Server, while also being able to receive data from it
  * <pre>
  * {@code
  * Client client = new Client("Server-Address", PORT);
- * client.send("MESSAGE");
- * client.receive();
+ * client.sendString("MESSAGE");
+ * client.receiveText();
  * }
  * </pre>
  */
 public class Client {
     /** The Socket that is responsible for handling the connection */
     private Socket socket;
+
 
     // Input
 
@@ -86,7 +90,7 @@ public class Client {
                     binaryMessages.add(data);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                //throw new RuntimeException("Error while reading text data from Server", e);
             }
         };
 
@@ -97,7 +101,7 @@ public class Client {
                     textMessages.add(message);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                //throw new RuntimeException("Error while reading text data from Server", e);
             }
         };
 
@@ -262,7 +266,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client-" + (socket.isConnected() ? "A" : "C") + ":[" + socket.getInetAddress().toString() + ":" + socket.getPort() + "]";
+        return "Client-" + (socket.isConnected() ? "A" : "C") + ":[" + socket.getInetAddress().toString() + ":" + socket.getLocalPort() + "]";
     }
 
     @Override
